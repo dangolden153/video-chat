@@ -1,32 +1,51 @@
 import React from 'react';
-import Home_page from './pages/homepage/homepage'
-import Hiv_page from './pages/Hiv_page'
-import Xray_page from './pages/Xray_page'
-import Blood_page from './pages/blood_page' 
+import { Typography, AppBar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import {Switch, Route} from 'react-router-dom'
+import VideoPlayer from './component/Video';
+import Sidebar from './component/Options';
+import Notifications from './component/Notifications';
 
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    borderRadius: 15,
+    margin: '30px 100px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '600px',
+    border: '2px solid black',
 
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+    },
+  },
+  image: {
+    marginLeft: '15px',
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+}));
 
+const App = () => {
+  const classes = useStyles();
 
-const App =()=>(
-  <div>
-    <Switch>
-    <Route path='/' exact component={Home_page} />
-    <Route path='/hiv'  component={Hiv_page} />
-    <Route path='/xray'  component={Xray_page} />
-    <Route path='/blood'  component={Blood_page} />
-    </Switch>
+  return (
+    <div className={classes.wrapper}>
+      <AppBar className={classes.appBar} position="static" color="inherit">
+        <Typography variant="h2" align="center">Video Chat</Typography>
+      </AppBar>
+      <VideoPlayer />
+      <Sidebar>
+        <Notifications />
+      </Sidebar>
+    </div>
+  );
+};
 
- </div>
-)
 export default App;
-
-
-/// homepage page
-/// status bar component
-/// the up nav component
-/// the header component
-/// currency section component
-/// menu component 
-/// position bottom || down nav component
